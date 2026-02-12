@@ -1,0 +1,93 @@
+<div class="outer">
+  <div class="card">
+    <div class="title">
+      <span class="heart">♥</span>
+      캐나다 워킹홀리데이까지
+      <span class="heart">♥</span>
+    </div>
+    <div class="dday" id="dday">D-...</div>
+  </div>
+</div>
+
+<style>
+body {
+  margin: 0;
+  background: transparent;
+}
+
+.outer {
+  width: 100%;
+  padding-top: 6px;
+  box-sizing: border-box;
+}
+
+.card {
+  margin: 0 4px; /* 🔥 가로 더 넓게 */
+  height: 210px;
+  background: #DCE7E2;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.title {
+  font-size: 14px; /* 🔥 이전 단계로 축소 */
+  font-weight: 700;
+  color: #6E8F87;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.heart {
+  font-size: 14px;
+}
+
+.dday {
+  font-size: 92px; /* 🔥 이전 단계로 축소 */
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1;
+  margin: 0;
+}
+</style>
+
+<script>
+(function() {
+
+  // 🔥 오늘 날짜를 한국 기준 "자정"으로 고정
+  const now = new Date();
+  const korea = new Date(
+    now.toLocaleString("en-US", { timeZone: "Asia/Seoul" })
+  );
+
+  // 오늘 날짜 00:00으로 세팅
+  const today = new Date(
+    korea.getFullYear(),
+    korea.getMonth(),
+    korea.getDate()
+  );
+
+  // 목표일도 00:00 기준
+  const target = new Date(2026, 3, 6); // 4월은 3 (0부터 시작)
+
+  const diff = target - today;
+  const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+  let text;
+  if (day > 0) {
+    text = "D-" + day;
+  } else if (day < 0) {
+    text = "D+" + Math.abs(day);
+  } else {
+    text = "D-DAY";
+  }
+
+  document.getElementById("dday").innerHTML = text;
+
+})();
+</script>
